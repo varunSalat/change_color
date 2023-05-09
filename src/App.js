@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import './style.css';
+import { ColorContainer } from './ColorContainer';
+import Form from './Form';
 
 function App() {
+  const [color,setColor]=useState("");
+  const contrastColor = ["red","green","black","gray","blue"];
+  const checkContrastColor = ()=>{
+    const arr= contrastColor.filter((Arraycolor) => Arraycolor.toLocaleLowerCase() === color.toLowerCase());
+    return arr.length;
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="color_main_container">
+      <ColorContainer
+        color={color}
+        checkContrastColor={checkContrastColor}
+      />
+      <Form
+        color={color}
+        setColor={setColor}
+      />
+      
     </div>
   );
 }
